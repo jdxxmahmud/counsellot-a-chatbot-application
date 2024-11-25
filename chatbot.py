@@ -1,6 +1,6 @@
 import streamlit as st
 from tensorflow.keras.models import load_model
-import numpy as np
+from gemma.models import GemmaCausalLM
 
 model_path = "models/gemma_lm_1k.h5"
 
