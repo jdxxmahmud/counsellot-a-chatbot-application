@@ -2,15 +2,30 @@ import streamlit as st
 from tensorflow.keras.models import load_model
 from gemma.models import GemmaCausalLM
 from custom_obj import GemmaCausalLM
+import gdown
+import os
 
+# custom_objects = {"GemmaCausalLM": GemmaCausalLM}
 
-custom_objects = {"GemmaCausalLM": GemmaCausalLM}
-
+file_id = "1QGsrTN4GYa5rOr74ClYTrCnamTW-ZmsD"
 model_path = "models/gemma_lm_1k.h5"
 
-model = load_model(model_path, custom_objects= custom_objects)
+model = load_model(model_path)
+
+def download_model():
+    url = f"https://drive.google.com/uc?id={file_id}"
+    output = model_path
+    gdown.download(url, output, quiet=False)
+
+# Check if the model exists locally, otherwise download it
+if not os.path.exists(model_path):
+    st.info("Downloading model. This may take a while...")
+    download_model()
+
 
 st.title("Counsellot: Your counselling bot")
+
+
 st.write("Ask questions related to your mental health")
 
 if "history" not in st.session_state:
