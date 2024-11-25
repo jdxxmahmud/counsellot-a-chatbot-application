@@ -1,10 +1,14 @@
 import streamlit as st
 from tensorflow.keras.models import load_model
 from gemma.models import GemmaCausalLM
+from custom_obj import GemmaCausalLM
+
+
+custom_objects = {"GemmaCausalLM": GemmaCausalLM}
 
 model_path = "models/gemma_lm_1k.h5"
 
-model = load_model(model_path)
+model = load_model(model_path, custom_objects= custom_objects)
 
 st.title("Counsellot: Your counselling bot")
 st.write("Ask questions related to your mental health")
