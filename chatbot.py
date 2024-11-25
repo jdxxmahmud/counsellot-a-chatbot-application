@@ -29,11 +29,10 @@ user_input = st.text_input(f"{st.session_state.user_name}: ", key="input", place
 
 # Define a function to generate chatbot responses
 def generate_response(input_text):
-    # Preprocess the input text (you may need to customize this based on your fine-tuned model)
-    # Example: Convert input to a vector, tokenize, etc.
-    input_vector = np.array([input_text])  # Adjust this as per model input requirements
-    response = model.predict(input_vector)  # Use the model to predict
-    return response  # Convert response to text if necessary
+    
+    response = model.generate(input_text)
+
+    return response
 
 
 if st.button("Send"):
