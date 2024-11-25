@@ -5,12 +5,12 @@ from custom_obj import GemmaCausalLM
 import gdown
 import os
 
-# custom_objects = {"GemmaCausalLM": GemmaCausalLM}
+custom_objects = {"GemmaCausalLM": GemmaCausalLM}
 
 file_id = "1QGsrTN4GYa5rOr74ClYTrCnamTW-ZmsD"
 model_path = "models/gemma_lm_1k.h5"
 
-model = load_model(model_path)
+model = load_model(model_path, custom_objects=custom_objects)
 
 def download_model():
     url = f"https://drive.google.com/uc?id={file_id}"
